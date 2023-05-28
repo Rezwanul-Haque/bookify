@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: bookify
+  name: bookify
+  namespace: bookify
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bookify
+  template:
+    metadata:
+      labels:
+        app: bookify
+    spec:
+      containers:
+      - env:
+        - name: CONSUL_URL
+          value: consul.consul:8500
+        - name: CONSUL_PATH
+          value: bookify
+        image: <docker-registry-path>/bookify:1.1.0
+        imagePullPolicy: Always
+        name: bookify
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        args:
+          - "serve"
+      imagePullSecrets:
+      - name: <ns-specific-k8s-secret>

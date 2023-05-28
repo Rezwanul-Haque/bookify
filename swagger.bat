@@ -1,0 +1,2 @@
+@REM For Command prompt only
+docker run --rm -it --env GOPATH=/go -v "%CD%":/go/src -w /go/src quay.io/goswagger/swagger:latest %*
