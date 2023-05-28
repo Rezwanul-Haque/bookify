@@ -19,7 +19,7 @@ install-swagger:
 swagger: install-swagger
 	swagger generate spec -o ./swagger.yaml --scan-models
 
-development: swagger
+development:
 	# booting up dependency containers
 	@docker-compose up -d consul db
 
@@ -38,7 +38,7 @@ test: ## Run unittests
 coverage: ## Generate global code coverage report
 	@go tool cover -func=cov.out
 
-bookify: ## Remove previous build
+down: ## Remove previous build
 	@rm -f $(PROJECT_NAME)
 	@docker-compose down
 

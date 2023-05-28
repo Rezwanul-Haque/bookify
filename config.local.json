@@ -12,7 +12,7 @@
       "port": "3306",
       "user": "root",
       "pass": "12345678",
-      "schema": "bookify_db",
+      "schema": "bookify",
       "maxIdleConn": 1,
       "maxOpenConn": 2,
       "maxConnLifetime": 30,

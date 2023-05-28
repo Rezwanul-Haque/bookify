@@ -60,6 +60,13 @@ paths:
         post:
             description: Create a book
             operationId: Post
+            parameters:
+                - name: book
+                  in: body
+                  description: Book object to be created
+                  required: true
+                  schema:
+                      $ref: '#/definitions/BookReq'
             responses:
                 "200":
                     $ref: '#/responses/BookCreatedResponse'
@@ -86,19 +93,21 @@ paths:
             tags:
                 - Book
     /v1/book/{id}:
-        delete:
-            description: Delete a book
-            operationId: Delete
+        get:
+            description: fetch a book
+            operationId: Get
             parameters:
                 - name: id
                   in: path
-                  description: ID of the book to delete
+                  description: ID of the book to fetch
                   required: true
                   type: string
             responses:
-                "204":
-                    description: ""
+                "200":
+                    $ref: '#/responses/BookCreatedResponse'
                 "400":
+                    $ref: '#/responses/errorResponse'
+                "404":
                     $ref: '#/responses/errorResponse'
                 "500":
                     $ref: '#/responses/errorResponse'
@@ -124,21 +133,19 @@ paths:
                     $ref: '#/responses/errorResponse'
             tags:
                 - Book
-        get:
-            description: fetch a book
-            operationId: Get
+        delete:
+            description: Delete a book
+            operationId: Delete
             parameters:
                 - name: id
                   in: path
-                  description: ID of the book to fetch
+                  description: ID of the book to delete
                   required: true
                   type: string
             responses:
-                "200":
-                    $ref: '#/responses/BookCreatedResponse'
+                "204":
+                    description: ""
                 "400":
-                    $ref: '#/responses/errorResponse'
-                "404":
                     $ref: '#/responses/errorResponse'
                 "500":
                     $ref: '#/responses/errorResponse'
@@ -146,6 +153,7 @@ paths:
                 - Book
 produces:
     - application/json
+
 responses:
     BookCreatedResponse:
         description: response after a book created

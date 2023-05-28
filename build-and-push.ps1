@@ -9,5 +9,5 @@ IF ($tag -eq "") {
 
 go build
 Write-Host "Docker build with tag: $tag"
-docker build -t registry.shadowchef.co/shadowchef/storage:$tag .
-docker push registry.shadowchef.co/shadowchef/storage:$tag
+docker build -t <registry.url>/<username>/bookify:$tag .
+docker push <registry.url>/<username>/bookify:$tag
