@@ -33,4 +33,4 @@ jobs:
           context: .
           dockerfile: ./Dockerfile
           push: true
-          tags: $DOCKERHUB_USERNAME/bookify:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/bookify:latest
