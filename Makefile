@@ -30,7 +30,7 @@ development:
 	@curl --request PUT --data-binary @config.local.json http://localhost:8500/v1/kv/${PROJECT_NAME}
 
 	# building bookify
-	@docker-compose up --build ${PROJECT_NAME}
+	@docker-compose up --build ${PROJECT_NAME} -d
 
 test: ## Run unittests
 	@go test -cover -short ${PKG_LIST}
