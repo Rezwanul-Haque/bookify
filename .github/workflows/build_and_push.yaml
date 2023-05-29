@@ -31,6 +31,5 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          dockerfile: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/bookify:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/bookify:v1.0.0
