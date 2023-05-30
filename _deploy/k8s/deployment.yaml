@@ -21,7 +21,7 @@ spec:
           value: consul.consul:8500
         - name: CONSUL_PATH
           value: bookify
-        image: rezwanulhaque/bookify:v1.0.1
+        image: rezwanulhaque/bookify:v1.0.2
         imagePullPolicy: Always
         name: bookify
         ports:
