@@ -24,11 +24,11 @@ func NewBookController(grp interface{}, svc svc.IBook) {
 
 	g := grp.(*echo.Group)
 
-	g.POST("/v1/book", uc.Create)
-	g.GET("/v1/book", uc.List)
-	g.GET("/v1/book/:id", uc.Get)
-	g.PUT("/v1/book/:id", uc.Update)
-	g.DELETE("/v1/book/:id", uc.Delete)
+	g.POST("/v1/books", uc.Create)
+	g.GET("/v1/books", uc.List)
+	g.GET("/v1/books/:id", uc.Get)
+	g.PUT("/v1/books/:id", uc.Update)
+	g.DELETE("/v1/books/:id", uc.Delete)
 }
 
 // swagger:route POST /v1/book Book Create
