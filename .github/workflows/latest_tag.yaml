@@ -16,16 +16,14 @@ jobs:
           repository: rezwanul-haque/bookify
           ssh-key: ${{ secrets.BOOKIFY_PRIVATE }}
           path: bookify
-          ref: develop
 
       - name : Update bookify repo
         run: |
-          pwd
-          ls
           cd ./bookify
           git config --global user.email bot.rezwanul-haque.io
           git config --global user.name "Bookify Actions Bot"
           TAG=$(git describe --abbrev=0 --tags)
+          git checkout develop
           echo "TAG=$TAG" >> latest_tag.txt
           git add latest_tag.txt
           git commit -m "Update latest_tag.txt with $TAG"
