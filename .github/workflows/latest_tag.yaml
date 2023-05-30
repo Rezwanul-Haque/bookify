@@ -20,7 +20,8 @@ jobs:
 
       - name : Update bookify repo
         run: |
-          cd bookify/
+          pwd
+          ls
           git config --global user.email bot.rezwanul-haque.io
           git config --global user.name "Bookify Actions Bot"
           TAG=$(git describe --abbrev=0 --tags)
