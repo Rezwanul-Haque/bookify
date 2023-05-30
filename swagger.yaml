@@ -56,7 +56,7 @@ info:
     title: bookify system API.
     version: v1.0.0
 paths:
-    /v1/book:
+    /v1/books:
         post:
             description: Create a book
             operationId: Post
@@ -92,7 +92,7 @@ paths:
                     $ref: '#/responses/errorResponse'
             tags:
                 - Book
-    /v1/book/{id}:
+    /v1/books/{id}:
         get:
             description: fetch a book
             operationId: Get
@@ -122,6 +122,12 @@ paths:
                   description: ID of the book to update
                   required: true
                   type: string
+                - name: book
+                  in: body
+                  description: Book object to be updated
+                  required: true
+                  schema:
+                      $ref: '#/definitions/BookReq'
             responses:
                 "200":
                     $ref: '#/responses/genericSuccessResponse'
