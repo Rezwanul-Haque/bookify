@@ -10,22 +10,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Clone bookify repo
+        uses: actions/checkout@v3
+        with:
+          repository: rezwanul-haque/bookify
+          ssh-key: ${{ secrets.BOOKIFY_PRIVATE }}
+          path: bookify
+          ref: develop
 
-      - name: Fetch latest tag
-        id: latest_tag
-        run: echo "::set-output name=tag::$(git describe --abbrev=0 --tags)"
-
-      - name: Update latest_tag.txt
-        run: echo "${{ steps.latest_tag.outputs.tag }}" > latest_tag.txt
-
-      - name: Commit and push changes
-        env:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      - name : Update bookify repo
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          cd bookify/
+          git config --global user.email bot.rezwanul-haque.io
+          git config --global user.name "Bookify Actions Bot"
+          TAG=$(git describe --abbrev=0 --tags)
+          echo "TAG=$TAG" >> latest_tag.txt
           git add latest_tag.txt
-          git commit -m "Update latest_tag.txt with ${{ steps.latest_tag.outputs.tag }}"
-          git push
+          git commit -m "Update latest_tag.txt with $TAG"
+          git push origin develop
