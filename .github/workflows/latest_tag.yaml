@@ -1,0 +1,29 @@
+name: Update Latest Tag
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  update_latest_tag:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Fetch latest tag
+        id: latest_tag
+        run: echo "::set-output name=tag::$(git describe --abbrev=0 --tags)"
+
+      - name: Update latest_tag.txt
+        run: echo "${{ steps.latest_tag.outputs.tag }}" > latest_tag.txt
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add latest_tag.txt
+          git commit -m "Update latest_tag.txt with ${{ steps.latest_tag.outputs.tag }}"
+          git push
