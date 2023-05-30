@@ -22,6 +22,8 @@ jobs:
           cd ./bookify
           git config --global user.email bot.rezwanul-haque.io
           git config --global user.name "Bookify Actions Bot"
+          git branch
+          git describe --abbrev=0 --tags
           TAG=$(git describe --abbrev=0 --tags)
           git checkout develop
           echo "TAG=$TAG" >> latest_tag.txt
