@@ -21,6 +21,8 @@ jobs:
         run: echo "${{ steps.latest_tag.outputs.tag }}" > latest_tag.txt
 
       - name: Commit and push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
